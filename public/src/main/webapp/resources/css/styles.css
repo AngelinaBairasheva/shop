@@ -23,8 +23,8 @@ img
 	margin: 0;	
 }
 .imageCatalog{
-	
-	max-width: 190px;
+	max-height: 150px;
+	max-width: 130px;
 }
 form
 {
@@ -375,7 +375,6 @@ nav.icons li a.map {
 	/*margin-left: 0px;*/
 }
 .sections-block .catalog-item {
-	height: 207px;
 }
 .catalog-item .item-img {
 	width: 149px;
@@ -394,9 +393,9 @@ nav.icons li a.map {
 	text-align: center;
 	background: #e3d39c;
 	color: #5d4016;
-	font-size: 11px;
+	font-size: 18px;
 	margin: 10px 0 15px 0;
-	padding: 7px 0;
+	padding: 3px 0;
 }
 .catalog-item .add2basket {
 	background: url(../i/icon-basket-line.png);
@@ -642,6 +641,8 @@ nav.icons li a.map {
 	position: relative;
 }
 .catalog-item-detail .img-holder {
+	max-width: 350px;
+	max-height: 350px;
 	float: left;
 	border: 2px solid #8d7c4e;
 	padding: 30px 23px;
@@ -680,6 +681,7 @@ nav.icons li a.map {
 .catalog-item-detail .param-row .param-value {
 	display: inline-block;
 	max-width: 630px;
+	margin-left: 30px;
 	width: 630px;
 }
 .catalog-item-detail .add2basket {
@@ -711,7 +713,6 @@ nav.icons li a.map {
 }
 .catalog-item-detail .back-link {
 	position: absolute;
-	left: 448px;
 	bottom: 0;
 	background: url(../i/icon-reload.png) no-repeat;
 	padding: 0 0 0 18px;

@@ -32,4 +32,12 @@ public class GoodsService {
     public void deleteGood(Goods goods) {
         goodsRepository.deleteGood(goods);
     }
+    @Transactional
+     public List<Goods> getGoodsByCategorysName(String name) {
+        return goodsRepository.getGoodsByCategorysName(name);
+    }
+    @Transactional
+    public Goods getGoodsById(Long id) {
+        return goodsRepository.getGoodsById(id);
+    }
 }

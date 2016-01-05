@@ -12,15 +12,13 @@ public class Goods {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(nullable = true)
-    private String country;
     @Column(nullable = false)
     private BigDecimal price;
     @Column(nullable = false)
     private Integer count;   //в наличии
-    @Column(nullable = false)
-    private String size;
     @Column(nullable = true)
+    private String size;
+    @Column(nullable = false)
     private String image;
     @Column(nullable = true)
     private String description;
@@ -29,17 +27,18 @@ public class Goods {
     @Column(nullable = true)
     private String brand; //брэнд
     @Column(nullable = false)
-    private String calories; //энергетическа€ ценность
+    private Integer calories; //энергетическа€ ценность/к ал
     @Column(nullable = false)
     private String composition;//состав
     @Column(nullable = false)
     private Integer weight;
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private Boolean byorder;  //под заказ
     @Column(nullable = true)
     private String packaging;  //упаковка
-    @Column(nullable = false)
-    private String kind;     //вид
     @Column(nullable = true)
-    private String type;     //тип
+    private String kind;     //вид шоколада
+    private String pfc; //белки жиры углеводы
     @OneToMany(cascade = CascadeType.REFRESH,
             fetch = FetchType.LAZY,
             mappedBy = "good")
@@ -53,11 +52,29 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(String name, String country, BigDecimal price, Integer count, String size, String image, String description,
-                 String vendor_code, String brand, String calories, String composition, Integer weight, String packaging,
-                 String kind, String type, Categories category) {
+    public String getPfc() {
+        return pfc;
+    }
+
+    public void setPfc(String pfc) {
+        this.pfc = pfc;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    public Goods(String name,   BigDecimal price, Integer count, String size, String image, String description,
+                 String vendor_code, String brand, Integer calories, String composition, Integer weight, String packaging,
+                 String kind, Categories category, Boolean byorder, String pfc) {
+        this.pfc=pfc;
+
+        this.byorder=byorder;
         this.name = name;
-        this.country = country;
         this.price = price;
         this.count = count;
         this.size = size;
@@ -70,7 +87,6 @@ public class Goods {
         this.weight = weight;
         this.packaging = packaging;
         this.kind = kind;
-        this.type = type;
         this.category = category;
     }
 
@@ -90,12 +106,30 @@ public class Goods {
         this.name = name;
     }
 
-    public String getCountry() {
-        return country;
+    public Boolean getByorder() {
+        return byorder;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setByorder(Boolean byorder) {
+        this.byorder = byorder;
+    }
+
+    public Goods(String name, BigDecimal price, Integer count, String image,  String vendor_code,
+                 Integer calories, String composition, Integer weight, String packaging, String kind,
+                  Categories category, Boolean byorder) {
+        this.byorder=byorder;
+
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.image = image;
+        this.vendor_code = vendor_code;
+        this.calories = calories;
+        this.composition = composition;
+        this.weight = weight;
+        this.packaging = packaging;
+        this.kind = kind;
+        this.category = category;
     }
 
     public BigDecimal getPrice() {
@@ -154,11 +188,11 @@ public class Goods {
         this.brand = brand;
     }
 
-    public String getCalories() {
+    public Integer getCalories() {
         return calories;
     }
 
-    public void setCalories(String calories) {
+    public void setCalories(Integer calories) {
         this.calories = calories;
     }
 
@@ -192,14 +226,6 @@ public class Goods {
 
     public void setKind(String kind) {
         this.kind = kind;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public List<Cart> getCarts() {

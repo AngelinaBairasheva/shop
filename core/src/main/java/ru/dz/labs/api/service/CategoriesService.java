@@ -34,6 +34,10 @@ public class CategoriesService {
         return categoriesRepository.getRootCategories();
     }
     @Transactional
+    public List<Categories> getEndedCategories() {
+        return categoriesRepository.getEndedCategories();
+    }
+    @Transactional
     public Categories getCategoryById(Long id) {
         return categoriesRepository.getCategoryById(id);
     }
@@ -41,6 +45,10 @@ public class CategoriesService {
     @Transactional
     public void deleteCategory(Categories categories) {
         categoriesRepository.deleteCategory(categories);
+    }
+    @Transactional
+    public Categories getCategoryByName(String name) {
+        return categoriesRepository.getCategoryByName(name);
     }
 }
 

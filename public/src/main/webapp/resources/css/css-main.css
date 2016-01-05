@@ -531,9 +531,8 @@ header .menu table td:hover {
 }
 .product .head {
   background-color: #ffffff;
-  font-size: 27px;
+  font-size: 17px;
   color: #432119;
-  height: 60px;
   line-height: 25px;
   padding: 4px 10px;
   text-align: center;
@@ -589,6 +588,7 @@ header .menu table td:hover {
   box-shadow: 3px 4px 13px rgba(0, 0, 0, 0.4);
 }
 .pagination {
+  background: #ebdf8f !important;
   color: #abaaaa;
   border-color: #abaaaa;
 }

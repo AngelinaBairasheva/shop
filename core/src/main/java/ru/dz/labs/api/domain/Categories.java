@@ -16,11 +16,25 @@ public class Categories {
     private String description;
     private String photo;
 
+    public Categories(String name, Categories parent, String photo) {
+        this.name = name;
+        this.parent = parent;
+        this.photo=photo;
+    }
+    public Categories(String name, String photo) {
+        this.name = name;
+        this.photo=photo;
+    }
     public Categories(String name, Categories parent) {
         this.name = name;
         this.parent = parent;
     }
-
+    public Categories(String name, Categories parent, String photo,String description) {
+        this.name = name;
+        this.parent = parent;
+        this.photo=photo;
+        this.description=description;
+    }
     public Categories(String name) {
 
         this.name = name;

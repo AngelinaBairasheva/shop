@@ -15,7 +15,7 @@
 
                         <li><a href="/about/news/">Новости</a></li>
 
-                        <li><a href="/catalog/">Продукция</a></li>
+                        <li><a href="/catalog/">Каталог</a></li>
 
                         <li><a href="/contacts/">Контакты</a></li>
 

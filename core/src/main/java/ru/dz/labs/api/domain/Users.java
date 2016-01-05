@@ -21,7 +21,7 @@ import java.util.List;
         private String secondName;
         @Column(name = "middleName", nullable = false)
         private String middleName;
-        @Column(columnDefinition = "false")
+        @Column(columnDefinition = "boolean default false")
         private Boolean check;
         @Column(nullable = false, unique = true)
         private Long key;
@@ -59,7 +59,6 @@ import java.util.List;
         this.check = check;
         this.key = key;
     }
-
     public Long getId() {
         return id;
     }

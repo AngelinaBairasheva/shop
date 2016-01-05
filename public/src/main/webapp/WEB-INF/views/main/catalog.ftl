@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="categories" type="java.util.List<ru.dz.labs.api.domain.Categories>" -->
+<#-- @ftlvariable name="endedCategories" type="java.util.List<ru.dz.labs.api.domain.Categories>" -->
 
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
@@ -12,7 +13,7 @@
             <div class="well">
                 <p><@recursion p1=p.categories/></p>
             </div>
-        </div><#else><p><a href="/"
+        </div><#else><p><a href="/catalog/${p.name}"
                 >${p.name}</a></p></#if>
     </#list>
 
@@ -44,8 +45,8 @@
                     <div class="wrap_aside">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <#list categories as category>
-                             <div class="panel panel-default">
-                                <#if  category.categories?has_content>
+                                <div class="panel panel-default">
+                                    <#if  category.categories?has_content>
                                         <div class="panel-heading" role="tab" id="heading${category.id}">
                                             <h4 class="panel-title">
                                                 <a role="button" data-toggle="collapse" data-parent="#accordion"
@@ -59,18 +60,18 @@
                                              role="tabpanel"
                                              aria-labelledby="heading${category.id}">
                                             <div class="panel-body">
-                                                    <!--nested panel -->
-                                                                <@recursion p1=category.categories/>
+                                                <!--nested panel -->
+                                                <@recursion p1=category.categories/>
                                             </div>
                                         </div><#else>
-                                    <div class="panel-heading">
-                                        <h4>
-                                            <a role="button"
-                                               href="/">
-                                            ${category.name}
-                                            </a>
-                                        </h4>
-                                    </div></#if>
+                                        <div class="panel-heading">
+                                            <h4>
+                                                <a role="button"
+                                                   href="/catalog/${category.name}">
+                                                ${category.name}
+                                                </a>
+                                            </h4>
+                                        </div></#if>
                                 </div>
                             </#list>
                         </div>
@@ -80,45 +81,21 @@
                 </div>
                 <div class="right_block">
                     <div class="row">
-                        <div class="col-xs-4">
-                            <article class="catalog-item">
-                                <div class="table-cell">
-                                    <img class="imageCatalog" src="../../../resources/i/img2.png">
-                                </div>
-                                <a href="/catalog/new-year/" class="item-title">Новый год</a>
-                            </article>
-                        </div>
-                        <div class="col-xs-4">
-                            <article class="catalog-item">
-                                <div class="table-cell">
-                                    <img class="imageCatalog" src="../../../resources/i/img2.png">
-                                </div>
-                                <a href="/catalog/new-year/" class="item-title">Новый год</a>
-                            </article>
-                        </div>
-                        <div class="col-xs-4">
-                            <article class="catalog-item">
-                                <div class="table-cell">
-                                    <img class="imageCatalog" src="../../../resources/i/img2.png">
-                                </div>
-                                <a href="/catalog/new-year/" class="item-title">Новый год</a>
-                            </article>
-                        </div>
-                        <div class="col-xs-4">
-                            <article class="catalog-item">
-                                <div class="table-cell">
-                                    <img class="imageCatalog" src="../../../resources/i/img2.png">
-                                </div>
-                                <a href="/catalog/new-year/" class="item-title">Новый год</a>
-                            </article>
-                        </div>
+                        <#list endedCategories as end>
+                            <div class="col-xs-4">
+                                <article class="catalog-item">
+                                    <div class="table-cell">
+                                        <img class="imageCatalog" src=${end.photo}>
+                                    </div>
+                                    <a href="/catalog/${end.name}" class="item-title">${end.name}</a>
+                                </article>
+                            </div>
+                        </#list>
                     </div>
-                    <div>
             </section>
             <div class="clear"></div>
         </div>
     </div>
-</div>
 </div>
 </div>
 </#macro>
