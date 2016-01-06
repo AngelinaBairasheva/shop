@@ -1,5 +1,3 @@
-<#-- @ftlvariable name="types" type="java.util.List<ru.breeders_handbook.model.TreeType>" -->
-<#-- @ftlvariable name="sorts" type="java.util.List<ru.breeders_handbook.model.SortView>" -->
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
 <#macro m_body>

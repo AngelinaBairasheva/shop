@@ -31,12 +31,14 @@ public class CatalogController extends BaseController {
     @RequestMapping(value = "/good/{id}", method = RequestMethod.GET)
     public String renderItemsPage(@PathVariable Long id) {
 
+        request.setAttribute("endedCategories", categoriesService.getEndedCategories());
         request.setAttribute("item", goodsService.getGoodsById(id));
         return Constants.ATTR_ITEM;
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String renderCatalogItemsPage(@PathVariable String name) {
+        request.setAttribute("endedCategories", categoriesService.getEndedCategories());
         request.setAttribute("catalog", categoriesService.getCategoryByName(name));
         if(!goodsService.getGoodsByCategorysName(name).isEmpty())
         request.setAttribute("items", goodsService.getGoodsByCategorysName(name));
