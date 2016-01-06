@@ -22,7 +22,7 @@ public class Goods {
     private String image;
     @Column(nullable = true)
     private String description;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String vendor_code; //артикул
     @Column(nullable = true)
     private String brand; //брэнд

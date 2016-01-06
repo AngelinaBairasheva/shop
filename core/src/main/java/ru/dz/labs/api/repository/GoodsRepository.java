@@ -2,6 +2,7 @@ package ru.dz.labs.api.repository;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import ru.dz.labs.api.domain.Categories;
 import ru.dz.labs.api.domain.Goods;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class GoodsRepository {
@@ -40,7 +42,46 @@ public class GoodsRepository {
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         crit2.add(Restrictions.like("category", categories));
         crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
+        crit2.setMaxResults(6);
         result=crit2.list();
+        return result;
+    }
+    public List<Goods> getGoodsByPage(String name,int page) {
+        List<Goods> result;
+        Categories categories;
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
+        crit.add(Restrictions.like("name", name));
+        categories=(Categories) crit.uniqueResult();
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.add(Restrictions.like("category", categories));
+        crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
+        crit2.setMaxResults(6*page);
+        List<Goods> goodses=crit2.list();
+        ArrayList<Long> id=new ArrayList<>();
+        for(Goods i:goodses){
+            id.add(i.getId());
+        }
+        Criteria crit3 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit3.add(Restrictions.in("id", id));
+
+        Criteria crit5 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit5.add(Restrictions.like("category",categories));
+        int size=crit5.list().size(); //кол-во товаров в категории
+        int maxResult=6;              //кол-во товаров, отображающихся на последней странице
+        if(size-6*page<=0) {
+            maxResult = size - 6 * (page - 1);
+        }
+        crit3.setMaxResults(maxResult);
+        List<Goods> goodses1=crit3.list();
+        System.out.println("crit3="+goodses1);
+        ArrayList<Long> id2=new ArrayList<>();
+        for(Goods i:goodses1){
+            id2.add(i.getId());
+        }
+        Criteria crit4 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit4.add(Restrictions.in("id", id2));
+        crit4.addOrder(org.hibernate.criterion.Order.desc("id"));
+        result=crit4.list();
         return result;
     }
     public Goods getGoodsById(Long id) {
@@ -54,8 +95,23 @@ public class GoodsRepository {
         List<Goods> result;
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
-        crit2.setMaxResults(4);
+        crit2.setMaxResults(8);
         result=crit2.list();
+        return result;
+    }
+    public int getPagesCount(String name) {
+        int result, size;
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
+        crit.add(Restrictions.like("name",name));
+        Categories categories=(Categories)crit.uniqueResult();
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.add(Restrictions.like("category",categories));
+        size=crit2.list().size();
+        if(size%6!=0){
+            result=size/6+1;
+        }else {
+            result = size/6;
+        }
         return result;
     }
     public List<Goods> getGoodsByInterval(int start, int end, String catalogName) {
@@ -70,4 +126,20 @@ public class GoodsRepository {
         result=crit2.list();
         return result;
     }
+    public BigDecimal getMaxPrice(){
+        BigDecimal result;
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.setProjection(Projections.max("price"));
+        result=(BigDecimal) crit2.uniqueResult();
+        return result;
+    }
+    public BigDecimal getMinPrice(){
+        BigDecimal result;
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.setProjection(Projections.min("price"));
+        result= (BigDecimal) crit2.uniqueResult();
+        return result;
+    }
+
+
 }

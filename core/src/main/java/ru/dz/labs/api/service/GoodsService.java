@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dz.labs.api.domain.Goods;
 import ru.dz.labs.api.repository.GoodsRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -22,6 +23,10 @@ public class GoodsService {
     public List<Goods> getAllGoods() {
         return goodsRepository.getAllGoods();
     }
+    @Transactional
+    public int getPagesCount(String name) {
+        return goodsRepository.getPagesCount(name);
+    }
 
     @Transactional
     public void updateGood(Goods goods) {
@@ -37,6 +42,10 @@ public class GoodsService {
         return goodsRepository.getGoodsByCategorysName(name);
     }
     @Transactional
+    public List<Goods> getGoodsByPage(String name, int page) {
+        return goodsRepository.getGoodsByPage(name,page);
+    }
+    @Transactional
     public Goods getGoodsById(Long id) {
         return goodsRepository.getGoodsById(id);
     }
@@ -47,5 +56,13 @@ public class GoodsService {
     @Transactional
     public List<Goods> getGoodsByInterval(int start,int end, String catalogName) {
         return goodsRepository.getGoodsByInterval(start, end, catalogName);
+    }
+    @Transactional
+    public BigDecimal getMaxPrice() {
+        return goodsRepository.getMaxPrice();
+    }
+    @Transactional
+    public BigDecimal getMinPrice() {
+        return goodsRepository.getMinPrice();
     }
 }

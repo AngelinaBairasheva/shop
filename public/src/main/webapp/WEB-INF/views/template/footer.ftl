@@ -18,7 +18,7 @@
             <ul><#assign x=0>
                 <#list endedCategories as category>
                 <#if x%5==0></ul><ul><#else >
-                <li><a href="/catalog/${category.name}">${category.name}</a></li> </#if>
+                <li><a href="/catalog/${category.name}/1">${category.name}</a></li> </#if>
                     <#assign x=x+1>
                 </#list>
             </ul>

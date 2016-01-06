@@ -13,7 +13,7 @@
             <div class="well">
                 <p><@recursion p1=p.categories/></p>
             </div>
-        </div><#else><p><a href="/catalog/${p.name}"
+        </div><#else><p><a href="/catalog/${p.name}/1"
                 >${p.name}</a></p></#if>
     </#list>
 
@@ -67,7 +67,7 @@
                                         <div class="panel-heading">
                                             <h4>
                                                 <a role="button"
-                                                   href="/catalog/${category.name}">
+                                                   href="/catalog/${category.name}/1">
                                                 ${category.name}
                                                 </a>
                                             </h4>
@@ -87,7 +87,7 @@
                                     <div class="table-cell">
                                         <img class="imageCatalog" src=${end.photo}>
                                     </div>
-                                    <a href="/catalog/${end.name}" class="item-title">${end.name}</a>
+                                    <a href="/catalog/${end.name}/1" class="item-title">${end.name}</a>
                                 </article>
                             </div>
                         </#list>

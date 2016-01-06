@@ -36,15 +36,20 @@ public class CatalogController extends BaseController {
         return Constants.ATTR_ITEM;
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public String renderCatalogItemsPage(@PathVariable String name) {
-        if(request.getParameter("from")!=null){
-            request.setAttribute("items",goodsService.getGoodsByInterval(Integer.parseInt(request.getParameter("from")),
-                    Integer.parseInt(request.getParameter("to")),request.getParameter("catalog")));
+    @RequestMapping(value = "/{name}/{page}", method = RequestMethod.GET)
+    public String renderCatalogItemsPage(@PathVariable String name,@PathVariable int page) {
+        request.setAttribute("currentPage",page);
+        request.setAttribute("max",goodsService.getMaxPrice());
+        request.setAttribute("min",goodsService.getMinPrice());
+        if(request.getParameter("from")!=null&&request.getParameter("from").matches("\\d+")&&request.getParameter("to")!=null&&request.getParameter("to").matches("\\d+")){
+                    request.setAttribute("items", goodsService.getGoodsByInterval(Integer.parseInt(request.getParameter("from")),
+                            Integer.parseInt(request.getParameter("to")), name));
         }else{
-            if(!goodsService.getGoodsByCategorysName(name).isEmpty())
-                request.setAttribute("items", goodsService.getGoodsByCategorysName(name));
+            if(!goodsService.getGoodsByPage(name,page).isEmpty())
+                request.setAttribute("items", goodsService.getGoodsByPage(name,page));
         }
+        request.setAttribute("pagesCount",goodsService.getPagesCount(name));
+
         request.setAttribute("endedCategories", categoriesService.getEndedCategories());
         request.setAttribute("catalog", categoriesService.getCategoryByName(name));
         return Constants.ATTR_ITEMS;
