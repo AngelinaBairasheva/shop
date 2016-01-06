@@ -38,10 +38,15 @@ public class CatalogController extends BaseController {
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String renderCatalogItemsPage(@PathVariable String name) {
+        if(request.getParameter("from")!=null){
+            request.setAttribute("items",goodsService.getGoodsByInterval(Integer.parseInt(request.getParameter("from")),
+                    Integer.parseInt(request.getParameter("to")),request.getParameter("catalog")));
+        }else{
+            if(!goodsService.getGoodsByCategorysName(name).isEmpty())
+                request.setAttribute("items", goodsService.getGoodsByCategorysName(name));
+        }
         request.setAttribute("endedCategories", categoriesService.getEndedCategories());
         request.setAttribute("catalog", categoriesService.getCategoryByName(name));
-        if(!goodsService.getGoodsByCategorysName(name).isEmpty())
-        request.setAttribute("items", goodsService.getGoodsByCategorysName(name));
         return Constants.ATTR_ITEMS;
     }
 }

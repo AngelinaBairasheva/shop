@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import ru.dz.labs.api.domain.Categories;
 import ru.dz.labs.api.domain.Goods;
 
+import java.math.BigDecimal;
 import java.util.List;
 @Repository
 public class GoodsRepository {
@@ -38,8 +39,8 @@ public class GoodsRepository {
         categories=(Categories) crit.uniqueResult();
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         crit2.add(Restrictions.like("category", categories));
+        crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
         result=crit2.list();
-        System.out.println("result="+result);
         return result;
     }
     public Goods getGoodsById(Long id) {
@@ -55,7 +56,18 @@ public class GoodsRepository {
         crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
         crit2.setMaxResults(4);
         result=crit2.list();
-        System.out.println("result="+result);
+        return result;
+    }
+    public List<Goods> getGoodsByInterval(int start, int end, String catalogName) {
+        List<Goods> result;
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
+        crit.add(Restrictions.like("name",catalogName));
+        Categories categories=(Categories)crit.uniqueResult();
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.add(Restrictions.like("category",categories));
+        crit2.add(Restrictions.between("price", BigDecimal.valueOf(start),BigDecimal.valueOf(end)));
+        crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
+        result=crit2.list();
         return result;
     }
 }

@@ -6,19 +6,21 @@
 <div id="center">
     <div class="min-margin">
         <div class="center-wrapper">
-            <div class="breadcrumbs"><a href="/" title="Главная страница">Главная страница</a> / <a href="/catalog/" title="Каталог">Каталог</a> / <a href="/catalog/${item.category.name}" title="${item.category.name}">${item.category.name}</a>
+            <div class="breadcrumbs"><a href="/" title="Главная страница">Главная страница</a> / <a href="/catalog/" title="Каталог">
+                Каталог</a> / <a href="/catalog/${item.category.name}" title="${item.category.name}">${item.category.name}</a>
                 / ${item.name}</div>
             <h1><span>${item.name}</span></h1>
             <p><#if item.description??>${item.description}</#if></p>
             <article class="catalog-item-detail">
-                <div style="max-width: 417px; max-height: 400px;"  class="img-holder"><img style="max-width: 350px; max-height: 350px;" src=${item.image} /></div>
+                <div style="max-width: 417px; max-height: 400px;"  class="img-holder"><img style="max-width: 350px; max-height: 350px;"
+                                                                                           src=${item.image} /></div>
 
                 <form action="/addToCart" method="post">
                 <div class="description" style="font-size: 15px;">
                     <h1>${item.name}</h1>
                     <#if item.byorder=true>
-                    <span class="red">
-				Под заказ
+                    <span class="red"><h1><b>
+				Под заказ</b></h1>
 				</span></#if>
                     <div class="params">
                         <#if item.packaging??>

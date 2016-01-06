@@ -44,4 +44,8 @@ public class GoodsService {
     public List<Goods> getNewGoods() {
         return goodsRepository.getNewGoods();
     }
+    @Transactional
+    public List<Goods> getGoodsByInterval(int start,int end, String catalogName) {
+        return goodsRepository.getGoodsByInterval(start, end, catalogName);
+    }
 }

@@ -166,6 +166,8 @@ select:focus:invalid:focus {
   background-image: linear-gradient(to right, #f7f1eb, #b8a697, #f7f1eb);
 }
 .red {
+  font-size: 18px;
+  float: right;
   color: #f55252;
 }
 header .logo table {
@@ -531,7 +533,9 @@ header .menu table td:hover {
 }
 .product .head {
   background-color: #ffffff;
-  font-size: 17px;
+  height: 58px;
+  width: 270px;
+  font-size: 14px;
   color: #432119;
   line-height: 25px;
   padding: 4px 10px;
@@ -547,8 +551,8 @@ header .menu table td:hover {
   text-align: center;
 }
 .product .image img {
-  max-height: 270px;
-  max-width: 270px;
+  height: 270px;
+  width: 270px;
 }
 .product .cost {
   background-image: url(../i/cost.png);
