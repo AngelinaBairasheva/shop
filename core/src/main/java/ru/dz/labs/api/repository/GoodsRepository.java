@@ -49,4 +49,13 @@ public class GoodsRepository {
         result=(Goods) crit.uniqueResult();
         return result;
     }
+    public List<Goods> getNewGoods() {
+        List<Goods> result;
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
+        crit2.setMaxResults(4);
+        result=crit2.list();
+        System.out.println("result="+result);
+        return result;
+    }
 }

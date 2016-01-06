@@ -11,10 +11,10 @@
             <h1><span>${item.name}</span></h1>
             <p><#if item.description??>${item.description}</#if></p>
             <article class="catalog-item-detail">
-                <div class="img-holder"><img src=${item.image} /></div>
+                <div style="max-width: 417px; max-height: 400px;"  class="img-holder"><img style="max-width: 350px; max-height: 350px;" src=${item.image} /></div>
 
                 <form action="/addToCart" method="post">
-                <div class="description">
+                <div class="description" style="font-size: 15px;">
                     <h1>${item.name}</h1>
                     <#if item.byorder=true>
                     <span class="red">

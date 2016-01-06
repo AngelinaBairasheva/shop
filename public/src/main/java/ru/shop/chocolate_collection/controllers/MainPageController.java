@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.dz.labs.api.service.CategoriesService;
+import ru.dz.labs.api.service.GoodsService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,9 +16,12 @@ public class MainPageController extends BaseController  {
     private HttpServletRequest request;
     @Autowired
     private CategoriesService categoriesService;
+    @Autowired
+    private GoodsService goodsService;
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String renderMainPage() {
+        request.setAttribute("newGoods",goodsService.getNewGoods());
         request.setAttribute("endedCategories", categoriesService.getEndedCategories());
         return Constants.ATTR_MAIN;
     }

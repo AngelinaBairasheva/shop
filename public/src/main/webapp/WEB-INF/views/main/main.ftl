@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="newGoods" type="java.util.List<ru.dz.labs.api.domain.Goods>" -->
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
 <#macro m_body>
@@ -32,45 +33,27 @@
                 Только в фирменном бутике Chocolate Collection вам будет предложен широкий ассортимент настоящих шедевров шоколада ручной работы, который удовлетворит самого изысканного ценителя качественного шоколада. Продукция выполнена по классическим рецептам лучших шоколатье. Наши шоколатье открывали все новые и новые грани вкуса, совершенствовали рецепты и шлифовали свое мастерство, чтобы получить действительно эксклюзивный шоколад, достойный монархов. Сладость натуральных компонентов, горечь послевкусия и неповторимый аромат... Вам захочется радовать себя нашим шоколадом каждый день!<br>
                 Купить шоколад в интернет-магазине Chocolate Collection выгодно и удобно – у нас только проверенные поставщики и только лучшее качество. Наш интернет-магазин шоколада премиум класса всегда к вашим услугам.
             </div>
+            <#if newGoods??>
             <h1><span>Новинки</span></h1>
             <section class="offers-block margin">
-            </section>
-            <script type="text/javascript">
-                BX.message({
-                    MESS_BTN_BUY: 'Купить',
-                    MESS_BTN_ADD_TO_BASKET: 'В корзину',
-                    MESS_NOT_AVAILABLE: 'Нет в наличии',
-                    BTN_MESSAGE_BASKET_REDIRECT: 'Перейти в корзину',
-                    BASKET_URL: '/cart/',
-                    ADD_TO_BASKET_OK: 'Товар добавлен в корзину',
-                    TITLE_ERROR: 'Ошибка',
-                    TITLE_BASKET_PROPS: 'Свойства товара, добавляемые в корзину',
-                    TITLE_SUCCESSFUL: 'Товар добавлен в корзину',
-                    BASKET_UNKNOWN_ERROR: 'Неизвестная ошибка при добавлении товара в корзину',
-                    BTN_MESSAGE_SEND_PROPS: 'Выбрать',
-                    BTN_MESSAGE_CLOSE: 'Закрыть'
-                });
-            </script>
-            <h1><span>Хиты продаж</span></h1>
-            <section class="offers-block no-margin">
-            </section>
-            <script type="text/javascript">
-                BX.message({
-                    MESS_BTN_BUY: 'Купить',
-                    MESS_BTN_ADD_TO_BASKET: 'В корзину',
-                    MESS_NOT_AVAILABLE: 'Нет в наличии',
-                    BTN_MESSAGE_BASKET_REDIRECT: 'Перейти в корзину',
-                    BASKET_URL: '/cart/',
-                    ADD_TO_BASKET_OK: 'Товар добавлен в корзину',
-                    TITLE_ERROR: 'Ошибка',
-                    TITLE_BASKET_PROPS: 'Свойства товара, добавляемые в корзину',
-                    TITLE_SUCCESSFUL: 'Товар добавлен в корзину',
-                    BASKET_UNKNOWN_ERROR: 'Неизвестная ошибка при добавлении товара в корзину',
-                    BTN_MESSAGE_SEND_PROPS: 'Выбрать',
-                    BTN_MESSAGE_CLOSE: 'Закрыть'
-                });
-            </script>
-            <div class="clear"></div>
+
+                <div class="row">
+                    <#list newGoods as good>
+                    <div style="width: 25%!important;" class="col-xs-4">
+                        <article class="catalog-item">
+                            <div class="table-cell">
+                                <img class="imageCatalog" src=${good.image}>
+                            </div>
+                            <a href="/catalog/good/${good.id}" class="item-title">${good.name}</a>
+                            <form action="/cart" method="post">
+                            <a class="add2basket" title="Купить"/></a></form>
+                            <div class="item-price">${good.price} руб.		</div>
+                        </article>
+
+                    </div>
+                    </#list>
+                </div>
+            </section></#if>
         </div>
     </div>
 </div>

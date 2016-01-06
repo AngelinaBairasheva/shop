@@ -22,7 +22,7 @@ public class TestHibernate {
 
     public static void main(String[] args) throws SQLException {
         init();
-         insert();
+     //    insert();
         testCategories();
         //  testSubject();
         // testTutor();
@@ -68,7 +68,7 @@ public class TestHibernate {
                 "сахар, какао-тертое, какао-масло, обезжиренный какао- порошок,тертый лесной орех.  эмульгатор- соевый лецитин, натуральный ароматизатор- ваниль."+
                 "Продукт может содержать следы орехов, молока, яичного белка.",500,"пластиковая коробка","тёмный",categories1,false);
         goodsService.addGood(goods4);
-        Goods goods5=new Goods("ШОКОЛАД НА ЛОЖКЕ HOTCHOCSPOON DELUXE АМАРЕТТО", new BigDecimal(300),6,"165х155х30","../../../resources/i/4.jpg",
+        Goods goods5=new Goods("Шоколад на ложке Hootspoon deluxe Аmapetto", new BigDecimal(300),6,"165х155х30","../../../resources/i/4.jpg",
                 "Hotchocspoon - шоколад на ложке, наша большая гордость.\n" +
                         "Твердый кусочек счастья на ложке. Чрезвычайно мягкий с пралине, с миндалем, вкусом вишни, корицей, " +
                         "перцем…Выберите своего фаворита.","G-88","CH_CO",300,
@@ -82,5 +82,6 @@ public class TestHibernate {
        // System.out.println(categoriesService.getAllCategories());
         System.out.println(categoriesService.getEndedCategories());
         System.out.println(goodsService.getGoodsByCategorysName("шоколадные композиции"));
+        System.out.println(goodsService.getNewGoods());
     }
 }

@@ -78,27 +78,27 @@
                             </a>
                         </div></#list>
                 </div>
-        </div>
-            </section><#else><h4>В каталоге пока нет товаров</h4>
+            </section><#else>
+            <div align="center"><h4>В каталоге пока нет товаров</h4></div>
         </#if>
+    </div>
         <div class="clear"></div>
     </div>
 
 </div>
     <#if items??>
-<div style="background: #ebe8bd;text-align: center;">
-    <ul class="pagination">
-        <li class="disabled"><a>«</a></li>
-        <li class="active"><a>1</a></li>
-        <li><a href="/katalog/shokoladnye-figury/2">2</a></li>
-        <li><a href="/katalog/shokoladnye-figury/3">3</a></li>
-        <li><a href="/katalog/shokoladnye-figury/4">4</a></li>
-        <li class="disabled"><a>...</a></li>
-        <li><a href="/katalog/shokoladnye-figury/8">8</a></li>
-        <li><a href="/katalog/shokoladnye-figury/2">»</a></li>
-    </ul>
-</div><#else><h4>В каталоге пока нет товаров</h4>
-</#if>
+    <div style="background: #ebe8bd;text-align: center;">
+        <ul class="pagination">
+            <li class="disabled"><a>«</a></li>
+            <li class="active"><a>1</a></li>
+            <li><a href="/katalog/shokoladnye-figury/2">2</a></li>
+            <li><a href="/katalog/shokoladnye-figury/3">3</a></li>
+            <li><a href="/katalog/shokoladnye-figury/4">4</a></li>
+            <li class="disabled"><a>...</a></li>
+            <li><a href="/katalog/shokoladnye-figury/8">8</a></li>
+            <li><a href="/katalog/shokoladnye-figury/2">»</a></li>
+        </ul>
+    </div></#if>
 
 <div>
 

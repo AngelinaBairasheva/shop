@@ -111,7 +111,6 @@ table.no_border
 
 /* РЁР°РїРєР° */
 #header {
-	/*background: url(../i/header-bg-tile.png) #84c3c3;*/
 	background: url(../i/header-bg.png) #84c3c3 bottom;
 	min-height: 189px;
 	padding: 0 0 35px;
@@ -365,8 +364,8 @@ nav.icons li a.map {
 	vertical-align: top;
 	border: 2px solid #8d7c4e;
 	background: #f1e3a7;
-	width: 210px;
-	height: 229px;
+	width: 200px;
+	height: 250px;
 	padding: 10px;
 	/*margin: 0 0 48px 54px;*/
 	margin: 0 20px 48px 20px;
@@ -393,7 +392,7 @@ nav.icons li a.map {
 	text-align: center;
 	background: #e3d39c;
 	color: #5d4016;
-	font-size: 18px;
+	font-size: 12px;
 	margin: 10px 0 15px 0;
 	padding: 3px 0;
 }
@@ -669,7 +668,7 @@ nav.icons li a.map {
 	margin: 42px 0 85px 23px;
 }
 .catalog-item-detail .param-row {
-	margin: 17px 0;
+	margin: 8px 0;
 }
 .catalog-item-detail .param-row label {
 	text-transform: uppercase;

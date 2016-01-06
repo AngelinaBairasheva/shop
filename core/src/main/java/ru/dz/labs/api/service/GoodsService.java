@@ -40,4 +40,8 @@ public class GoodsService {
     public Goods getGoodsById(Long id) {
         return goodsRepository.getGoodsById(id);
     }
+    @Transactional
+    public List<Goods> getNewGoods() {
+        return goodsRepository.getNewGoods();
+    }
 }
