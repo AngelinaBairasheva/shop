@@ -4,6 +4,7 @@
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
 <#macro recursion p1>
+<head><title>Каталог продукции</title></head>
     <#list p1 as p>
         <#if p.categories ?has_content>
         <p><a class="category_group" data-toggle="collapse" href="#collapseExample${p.id}"

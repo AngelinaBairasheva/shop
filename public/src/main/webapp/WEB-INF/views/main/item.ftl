@@ -2,7 +2,7 @@
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
 <#macro m_body>
-<head>	<title></title></head>
+<head>	<title>${item.name}</title></head>
 <div id="center">
     <div class="min-margin">
         <div class="center-wrapper">

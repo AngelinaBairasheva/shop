@@ -24,9 +24,6 @@
      </script>
 
      <script type="text/javascript" src="http://www.chocolate-collection.ru/bitrix/cache/js/ch/chocolate/page_5bb9296843644c314f8f48bd2084b736/page_5bb9296843644c314f8f48bd2084b736_432bba508032ed8c466c685e800fcace.js?141415945333583"></script>
-     <title>Бутик элитного бельгийского шоколада и шоколадных подарков Chocolate Collection</title>
-
-
 
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
      <link rel="stylesheet" type="text/css" href="../../../resources/css/styles.css">
