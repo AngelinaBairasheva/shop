@@ -6,14 +6,12 @@
 <#-- @ftlvariable name="min" type="java.math.BigDecimal" -->
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
-<#macro m_body>
-<head><title>${catalog.name}</title></head>
+<#macro m_body><head><title>  Каталог продукции </title></head>
 <div id="center">
     <div class="min-margin">
     <div class="center-wrapper">
-        <div class="breadcrumbs"><a href="/" title="Главная страница">Главная страница</a> / <a href="/catalog/"
-                                                                                                title="Каталог">Каталог</a>
-            /${catalog.name}
+        <div class="breadcrumbs"><a href="/" title="Главная страница">Главная страница</a> /
+            <a href="/catalog/" title="Каталог">Каталог</a> /${catalog.name}
         </div>
         <h1><span>${catalog.name}</span></h1>
         <#if catalog.description??>
@@ -21,20 +19,20 @@
             </div></#if>
         <br><br><br>
         <#if items??>
-            <form action="/catalog/${catalog.name}/1" method="get">
+         <form action="/catalog/${catalog.name}/1" method="get">
                 <div class="interval-block">
                     <div class="head"><b>Подобрать по цене</b></div>
                     <div class="interval">
                         <div class="control">
                             <span>От </span>
-                            <input type="text" name="from" style="margin-right:20px;" placeholder=${min}>
+                            <input type="text" name="from" style="margin-right:20px;" value=${min}>
                             <span> До </span>
-                            <input type="text" name="to" placeholder=${max}>
+                            <input type="text" name="to" value=${max}>
                             <span> Руб</span>
                         </div>
 
                     </div>
-                    <input type="submit" name="" value="Подобрать"/>
+                    <input type="submit" name="selectByPrice" value="Подобрать"/>
                 </div>
             </form>
         </div>
@@ -86,26 +84,26 @@
 </div>
 
 </div>
-    <#if pagesCount!=0>
+    <#if items??>
     <div style="background: #ebe8bd;text-align: center;">
         <ul class="pagination">
             <#if currentPage==1>
                 <li class="disabled"><a>«</a></li> <#else>
-                <li><a href="/catalog/${catalog.name}/${currentPage-1}">«</a></li></#if>
+                <li><a href="/catalog/${catalog.name}/${currentPage-1}?from=${min}&to=${max}">«</a></li></#if>
             <#if pagesCount==1 || pagesCount==2|| pagesCount==3>
                 <#list 1..pagesCount as i>
                     <#if currentPage==i>
-                        <li><a class="active" href="/catalog/${catalog.name}/${i}">${i}</a></li><#else>
-                        <li><a href="/catalog/${catalog.name}/${i}">${i}</a></li></#if></#list><#else>
+                        <li><a class="active" href="/catalog/${catalog.name}/${i}?from=${min}&to=${max}">${i}</a></li><#else>
+                        <li><a href="/catalog/${catalog.name}/${i}?from=${min}&to=${max}">${i}</a></li></#if></#list><#else>
                 <#list 1..3 as i><#if currentPage==i>
-                    <li><a class="active" href="/catalog/${catalog.name}/${i}">${i}</a></li><#else>
-                    <li><a href="/catalog/${catalog.name}/${i}">${i}</a></li></#if>  </#list>
+                    <li><a class="active" href="/catalog/${catalog.name}/${i}?from=${min}&to=${max}">${i}</a></li><#else>
+                    <li><a href="/catalog/${catalog.name}/${i}?from=${min}&to=${max}">${i}</a></li></#if>  </#list>
                 <li class="disabled"><a>...</a></li>
-                <li><a href="/catalog/${catalog.name}/${pagesCount}">${pagesCount}</a></li>
+                <li><a href="/catalog/${catalog.name}/${pagesCount}?from=${min}&to=${max}">${pagesCount}</a></li>
             </#if>
             <#if currentPage==pagesCount>
                 <li class="disabled"><a>»</a></li><#else >
-                <li><a href="/catalog/${catalog.name}/${currentPage+1}">»</a></li></#if>
+                <li><a href="/catalog/${catalog.name}/${currentPage+1}?from=${min}&to=${max}">»</a></li></#if>
         </ul>
     </div></#if>
 

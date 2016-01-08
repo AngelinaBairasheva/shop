@@ -20,12 +20,17 @@ public class GoodsService {
     }
 
     @Transactional
+    public List<String> getTypesOfChocolate() {
+        return goodsRepository.getTypesOfChocolate();
+    }
+
+    @Transactional
     public List<Goods> getAllGoods() {
         return goodsRepository.getAllGoods();
     }
     @Transactional
-    public int getPagesCount(String name) {
-        return goodsRepository.getPagesCount(name);
+    public int getPagesCount(List<Goods> goodses) {
+        return goodsRepository.getPagesCount(goodses);
     }
 
     @Transactional
@@ -42,8 +47,8 @@ public class GoodsService {
         return goodsRepository.getGoodsByCategorysName(name);
     }
     @Transactional
-    public List<Goods> getGoodsByPage(String name, int page) {
-        return goodsRepository.getGoodsByPage(name,page);
+    public List<Goods> getGoodsByPage(List<Goods> goods, int page) {
+        return goodsRepository.getGoodsByPage(goods,page);
     }
     @Transactional
     public Goods getGoodsById(Long id) {
@@ -54,7 +59,7 @@ public class GoodsService {
         return goodsRepository.getNewGoods();
     }
     @Transactional
-    public List<Goods> getGoodsByInterval(int start,int end, String catalogName) {
+    public List<Goods> getGoodsByInterval(double start,double end, String catalogName) {
         return goodsRepository.getGoodsByInterval(start, end, catalogName);
     }
     @Transactional
@@ -64,5 +69,10 @@ public class GoodsService {
     @Transactional
     public BigDecimal getMinPrice() {
         return goodsRepository.getMinPrice();
+    }
+
+    @Transactional
+    public List<Goods> getChocolatesByKind(String kind) {
+        return goodsRepository.getChocolatesByKind(kind);
     }
 }

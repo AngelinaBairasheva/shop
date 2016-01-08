@@ -110,7 +110,7 @@ public class TestHibernate {
         System.out.println(goodsService.getGoodsByCategorysName("шоколадные композиции"));
         System.out.println(goodsService.getNewGoods());
         System.out.println(goodsService.getGoodsByCategorysName("шоколадные композиции"));
-        System.out.println(goodsService.getGoodsByPage("шоколадные композиции", 2));
-        System.out.println(goodsService.getGoodsByPage("шоколадные композиции", 3));
+        System.out.println(goodsService.getGoodsByPage(goodsService.getGoodsByCategorysName("шоколадные композиции"), 2));
+        System.out.println(goodsService.getGoodsByPage(goodsService.getGoodsByCategorysName("шоколадные композиции"), 3));
     }
 }

@@ -1,5 +1,6 @@
 <#-- @ftlvariable name="categories" type="java.util.List<ru.dz.labs.api.domain.Categories>" -->
 <#-- @ftlvariable name="endedCategories" type="java.util.List<ru.dz.labs.api.domain.Categories>" -->
+<#-- @ftlvariable name="typesOfChocolate" type="java.util.List<java.lang.String>" -->
 
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate />
@@ -76,8 +77,6 @@
                                 </div>
                             </#list>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="right_block">

@@ -42,18 +42,17 @@ public class GoodsRepository {
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
         crit2.add(Restrictions.like("category", categories));
         crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
-        crit2.setMaxResults(6);
         result=crit2.list();
         return result;
     }
-    public List<Goods> getGoodsByPage(String name,int page) {
+    public List<Goods> getGoodsByPage(List<Goods> goods,int page) {
         List<Goods> result;
-        Categories categories;
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
-        crit.add(Restrictions.like("name", name));
-        categories=(Categories) crit.uniqueResult();
+        List<Long> goodsId=new ArrayList<>();
+        for(Goods goods1:goods){
+            goodsId.add(goods1.getId());
+        }
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
-        crit2.add(Restrictions.like("category", categories));
+        crit2.add(Restrictions.in("id", goodsId));
         crit2.addOrder(org.hibernate.criterion.Order.desc("id"));
         crit2.setMaxResults(6*page);
         List<Goods> goodses=crit2.list();
@@ -61,19 +60,18 @@ public class GoodsRepository {
         for(Goods i:goodses){
             id.add(i.getId());
         }
-        Criteria crit3 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
-        crit3.add(Restrictions.in("id", id));
 
         Criteria crit5 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
-        crit5.add(Restrictions.like("category",categories));
+        crit5.add(Restrictions.in("id", goodsId));
         int size=crit5.list().size(); //кол-во товаров в категории
         int maxResult=6;              //кол-во товаров, отображающихся на последней странице
         if(size-6*page<=0) {
             maxResult = size - 6 * (page - 1);
         }
+        Criteria crit3 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit3.add(Restrictions.in("id", id));
         crit3.setMaxResults(maxResult);
         List<Goods> goodses1=crit3.list();
-        System.out.println("crit3="+goodses1);
         ArrayList<Long> id2=new ArrayList<>();
         for(Goods i:goodses1){
             id2.add(i.getId());
@@ -99,13 +97,28 @@ public class GoodsRepository {
         result=crit2.list();
         return result;
     }
-    public int getPagesCount(String name) {
-        int result, size;
-        Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
-        crit.add(Restrictions.like("name",name));
-        Categories categories=(Categories)crit.uniqueResult();
+    public List<String> getTypesOfChocolate() {
+        List<String> result;
         Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
-        crit2.add(Restrictions.like("category",categories));
+        crit2.setProjection(Projections.distinct(Projections.property("kind")));
+        result=crit2.list();
+        return result;
+    }
+    public List<Goods> getChocolatesByKind(String kind) {
+        List<Goods> result;
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.add(Restrictions.like("kind", kind));
+        result=crit2.list();
+        return result;
+    }
+    public int getPagesCount(List<Goods> goodses) {
+        int result, size;
+        List<Long> goodsId=new ArrayList<>();
+        for(Goods goods1:goodses){
+            goodsId.add(goods1.getId());
+        }
+        Criteria crit2 = sessionFactory.getCurrentSession().createCriteria(Goods.class);
+        crit2.add(Restrictions.in("id",goodsId));
         size=crit2.list().size();
         if(size%6!=0){
             result=size/6+1;
@@ -114,7 +127,7 @@ public class GoodsRepository {
         }
         return result;
     }
-    public List<Goods> getGoodsByInterval(int start, int end, String catalogName) {
+    public List<Goods> getGoodsByInterval(double start, double end, String catalogName) {
         List<Goods> result;
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(Categories.class);
         crit.add(Restrictions.like("name",catalogName));
