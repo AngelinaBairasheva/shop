@@ -668,6 +668,7 @@ nav.icons li a.map {
 	margin: 42px 0 85px 23px;
 }
 .catalog-item-detail .param-row {
+	border-bottom: 1px dotted #774611;
 	margin: 8px 0;
 }
 .catalog-item-detail .param-row label {
